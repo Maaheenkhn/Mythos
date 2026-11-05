@@ -82,15 +82,26 @@ git switch -c feat/landing-scaffold
 
 ### Step 2 — Scaffold Next.js in place
 
-`create-next-app` refuses a non-empty folder unless it only contains `.git`, `README.md`, `.gitignore`
-and similar. Since `docs/` will exist after the docs branches merge into `develop`, move it aside for
-the scaffold and restore it immediately after.
+`create-next-app` has two constraints here:
+
+1. It refuses a non-empty folder, and `docs/` will exist after the docs branches merge.
+2. It derives the npm package name from the target folder, and **`Mythos` contains capitals** — npm
+   rejects that with `name can no longer contain capital letters`.
+
+Scaffold into a lowercase sibling folder, then move the generated files in:
 
 ```powershell
 Move-Item docs ..\Mythos-docs-temp
-npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --use-npm --turbopack
+npx --yes create-next-app@latest ..\mythos-scaffold --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --use-npm --yes
+Get-ChildItem ..\mythos-scaffold -Force |
+  Where-Object { $_.Name -ne '.git' } |
+  ForEach-Object { Move-Item $_.FullName . -Force }
+Remove-Item ..\mythos-scaffold -Recurse -Force
 Move-Item ..\Mythos-docs-temp docs
 ```
+
+Then rename the package in `package.json` from `mythos-scaffold` to `mythos`, and restore the
+project `README.md` (the scaffold creates its own).
 
 If the CLI asks anything the flags did not cover, accept the defaults **except** React Compiler
 (choose **No** — keep the scaffold boring). If it overwrites `README.md`, restore the original
@@ -506,6 +517,7 @@ accumulated work on `develop` is stable.
 | Symptom | Cause | Fix |
 |---|---|---|
 | `create-next-app` refuses the folder | `docs/` present | Move `docs/` aside (Step 2) and restore it |
+| `create-next-app` rejects the name | Folder name `Mythos` has capitals — npm name rules | Scaffold into a lowercase sibling folder and move the files in (Step 2) |
 | First Vercel build fails: "No Next.js version detected" | Project imported before the app existed on `main` | Promote the release to `main` first (Step 12b), then import |
 | Build fails fetching fonts | `next/font/google` needs network | Keep the scaffold's bundled Geist, or vendor the font files locally |
 | 404 on production but works locally | Wrong Root Directory or branch | Root `./`; production branch `main` |
