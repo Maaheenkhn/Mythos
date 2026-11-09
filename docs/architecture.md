@@ -196,7 +196,7 @@ credential: the Supabase anon key, which is designed to be public and is constra
 | **Money as floats** | Rounding errors in PKR | Integer minor units (`bigint` paisa) everywhere |
 | **Unsigned Cloudinary uploads** | Anyone can fill your media account | Signed uploads, server-generated signatures, upload presets locked down |
 | **Analytics blocked / heavy** | PostHog JS fails on many Pakistani mobile networks and ad blockers; bundle hurts slow connections | First-party proxy, lazy load, sample events, consent-aware |
-| **Single Supabase region** | Karachi → distant region adds RTT to every query | Choose the closest region (Mumbai `ap-south-1` or Singapore) for the project; direct reads bypass Vercel entirely |
+| **Single Supabase region** | Pakistan → distant region adds RTT to every query | Choose the closest region (Mumbai `ap-south-1` or Singapore) for the project; direct reads bypass Vercel entirely |
 | **Email in the request path** | Resend latency/failure blocks the response | Send after responding (Next.js `after()`), never before the 2xx |
 | **Two deploy sources** | Confusion and duplicate deploys | GitHub → Vercel integration only; no `vercel --prod` from a laptop |
 
