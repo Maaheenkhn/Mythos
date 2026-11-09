@@ -14,9 +14,15 @@ export function getPublicEnv(): PublicEnv {
     return cached;
   }
 
+  // Supabase renamed the anon key to "publishable key" in its current
+  // dashboard. Accept either name so existing and new projects both work.
+  const anonKey =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
   const parsed = publicEnvSchema.safeParse({
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: anonKey,
   });
 
   if (!parsed.success) {

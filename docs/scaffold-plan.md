@@ -258,17 +258,26 @@ Visual target (desktop; collapses gracefully on mobile):
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│              faint constellation dots                │
-│        ╭──── faint contour lines ────╮              │
-│                                                      │
+│              PAKISTAN · EST. 2026                    │
 │                     Mythos                           │
-│            APPAREL, IN MONOCHROME                    │
+│            MEDIA INSPIRED FASHION                    │
+│                   ───────                            │
 │                                                      │
-│        ╰──── faint arches / grain ────╯              │
+│                   Something                          │
+│                 extraordinary                        │
+│                  is coming...                        │
 │                                                      │
-│  Karachi · Est. 2026                                 │
+│        faint molten-metal shader glow                │
+│                                                      │
+│  Pakistan                              © 2026 Mythos│
 └──────────────────────────────────────────────────────┘
 ```
+
+> **As shipped:** the M1 backdrop was upgraded from pure SVG to a WebGL2 molten-metal
+> shader (`MoltenMetal.jsx`), with a rotating headline and a custom cursor for fine
+> pointers. Both effects are client components gated behind `prefers-reduced-motion`
+> and degrade to the static CSS layers when WebGL is unavailable. The CSS-only design
+> below is kept as the reference fallback.
 
 Files:
 

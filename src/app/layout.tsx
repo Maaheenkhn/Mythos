@@ -25,7 +25,7 @@ function resolveSiteUrl() {
   return "http://localhost:3000";
 }
 
-const description = "Apparel, in monochrome. Made in Karachi, Pakistan.";
+const description = "Media inspired fashion. Made in Pakistan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(resolveSiteUrl()),
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   description,
   applicationName: "Mythos",
-  keywords: ["Mythos", "apparel", "Karachi", "Pakistan", "monochrome"],
+  keywords: ["Mythos", "fashion", "Pakistan", "media inspired", "monochrome"],
   openGraph: {
     title: "Mythos",
     description,

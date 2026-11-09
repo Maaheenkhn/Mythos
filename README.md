@@ -1,6 +1,6 @@
 # Mythos
 
-Monochrome apparel storefront for Karachi. Next.js (App Router) on Vercel, Supabase for data.
+Monochrome apparel storefront for Pakistan. Next.js (App Router) on Vercel, Supabase for data.
 
 ## Stack
 

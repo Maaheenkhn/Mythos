@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Mythos — apparel in monochrome";
+export const alt = "Mythos — media inspired fashion";
 export const size = {
   width: 1200,
   height: 630,
@@ -43,7 +43,7 @@ export default function Image() {
             color: "#a3a3a3",
           }}
         >
-          Apparel, in monochrome
+          Media inspired fashion
         </div>
       </div>
     ),
